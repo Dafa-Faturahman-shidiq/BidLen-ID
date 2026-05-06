@@ -49,16 +49,19 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di mesin lokal Anda.
    cd bidlen-id
 
 2. **Install Dependensi PHP**
+   ```bash
    composer install
 
-3. **Install Dependensi Node.js (Tailwind)**
+4. **Install Dependensi Node.js (Tailwind)**
+   ```bash
     npm install
 
-4. **Konfigurasi Environment**
+6. **Konfigurasi Environment**
+   ```bash
    cp .env.example .env
 
   Buka file .env dan sesuaikan konfigurasi database:
-  
+  ```bash
   DB_CONNECTION=mysql
   DB_HOST=127.0.0.1
   DB_PORT=3306
@@ -67,23 +70,28 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di mesin lokal Anda.
   DB_PASSWORD=
 
 5. **Generate Application Key**
+   ```bash
    php artisan key:generate
 
 6. **Migrasi Database & Seeding**
    (Pastikan database db_lelang_bidlen sudah dibuat di MySQL)
+   ```bash
    php artisan migrate --seed
 
 7. **Tautkan Storage (Sangat Penting untuk Gambar)**
    Perintah ini wajib dijalankan agar gambar barang lelang dapat diakses oleh publik.
+   ```bash
    php artisan storage:link
 
 8. **Jalankan Server Lokal**
    Buka dua terminal, lalu jalankan perintah berikut secara bersamaan:
 
     Terminal 1 (Menjalankan server PHP):
+   ```bash
    php artisan serve
 
   Terminal 2 (Menjalankan compiler Tailwind CSS):
+   ```bash
   npm run dev
 
 9. **Akses Aplikasi**
