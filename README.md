@@ -113,6 +113,90 @@ Masyarakat	  user_demo	      password
 - Database: MySQL
 - Icons: Google Material Symbols
 
+bidlen-id/
+│
+├── app/
+│   ├── Helpers/
+│   │   └── GenerateNewId.php           <-- Helper custom lu untuk bikin ID "BRG001"
+│   │
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/
+│   │   │   │   ├── BarangController.php   <-- Mengurus CRUD Barang & Draf (Petugas/Admin)
+│   │   │   │   ├── DashboardController.php<-- Mengurus halaman Dashboard Admin
+│   │   │   │   ├── LaporanController.php  <-- Mengurus Laporan (Khusus Administrator)
+│   │   │   │   ├── LelangController.php   <-- Mengurus status Buka/Tutup Lelang
+│   │   │   │   └── UserController.php     <-- Mengurus CRUD Petugas & Admin
+│   │   │   │
+│   │   │   ├── Auth/
+│   │   │   │   ├── LoginController.php    <-- Logika Login Multi-guard
+│   │   │   │   └── RegisterController.php <-- Logika Register Masyarakat
+│   │   │   │
+│   │   │   └── Masyarakat/
+│   │   │       ├── BerandaController.php  <-- Landing page, galeri barang (Guest/Public)
+│   │   │       └── DashboardController.php<-- History bid & Invoice (Masyarakat Auth)
+│   │   │
+│   │   └── Middleware/
+│   │       └── RoleMiddleware.php         <-- Middleware proteksi rute berdasarkan level
+│   │
+│   └── Models/
+│       ├── Barang.php                     <-- Model tb_barang
+│       ├── Lelang.php                     <-- Model tb_lelang
+│       ├── Level.php                      <-- Model tb_level
+│       ├── Masyarakat.php                 <-- Model tb_masyarakat
+│       └── Petugas.php                    <-- Model tb_petugas (Auth guard 'petugas')
+│
+├── database/
+│   ├── migrations/                        <-- File struktur tabel lu (tgl_mulai, id_barang, dll)
+│   └── seeders/                           <-- File untuk bikin akun admin/petugas default
+│
+├── public/
+│   ├── storage/                           <-- Symlink hasil dari php artisan storage:link
+│   └── (File asset publik lainnya spt favicon, gambar statis)
+│
+├── resources/
+│   ├── css/
+│   │   └── app.css                        <-- Konfigurasi utama Tailwind CSS
+│   │
+│   └── views/
+│       ├── admin/
+│       │   ├── barang/
+│       │   │   ├── create.blade.php       <-- Form tambah/edit barang lelang
+│       │   │   ├── draft.blade.php        <-- Tabel barang Draf (khusus petugas)
+│       │   │   ├── index.blade.php        <-- Tabel seluruh/publish barang
+│       │   │   └── show.blade.php         <-- Mode pratinjau barang
+│       │   │
+│       │   ├── dashboard/
+│       │   │   └── index.blade.php        <-- Tampilan utama admin
+│       │   │
+│       │   └── user/
+│       │       ├── create.blade.php       <-- Form tambah/edit Petugas/Admin
+│       │       └── index.blade.php        <-- Tabel manajemen user (khusus administrator)
+│       │
+│       ├── auth/
+│       │   ├── login.blade.php            <-- Tampilan Login
+│       │   └── register.blade.php         <-- Tampilan Daftar
+│       │
+│       ├── layouts/
+│       │   ├── admin.blade.php            <-- Master template Backend (Sidebar, Navbar, dll)
+│       │   └── app.blade.php              <-- Master template Frontend (Masyarakat)
+│       │
+│       └── masyarakat/                    <-- Kumpulan view untuk sisi pengunjung/pembeli
+│
+├── routes/
+│   └── web.php                            <-- Pusat pengaturan routing (Public, Auth, Admin)
+│
+├── storage/
+│   └── app/
+│       └── public/
+│           └── barang/                    <-- Tempat asli file foto yang lu upload tadi tersimpan
+│
+├── .env                                   <-- Konfigurasi database (DB_DATABASE=...)
+├── composer.json
+├── package.json                           <-- File dependensi NPM (Tailwind)
+├── tailwind.config.js                     <-- Setingan warna primary, error, font, dll
+└── README.md                              <-- Dokumentasi proyek lu buat GitHub
+
 👨‍💻 Pengembang
 Dikembangkan dengan penuh dedikasi oleh kelompok:
 **ZenithCodeCollective**
